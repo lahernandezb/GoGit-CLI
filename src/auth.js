@@ -5,7 +5,7 @@ const { createBasicAuth } = require('@octokit/auth-basic');
 const {
   askGithubCredentials,
   get2FaCode
-} = require('./inquirer');
+} = require('./prompt');
 const pkg = require('../package.json');
 
 const conf = new Configstore(pkg.name);
@@ -26,7 +26,7 @@ const getPersonalAccessToken = async () => {
       return res.twoFaCode;
     },
     token: {
-      scopes: ['user','repo','public_repo'],
+      scopes: ['user','repo'],
     }
   });
 

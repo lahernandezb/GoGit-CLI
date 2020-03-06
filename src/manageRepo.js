@@ -6,7 +6,7 @@ const {without} = require('ramda')
 const  {
   askRepoDetails,
   askIgnoreFiles
-}= require('./inquirer');
+}= require('./prompt');
 
 const createRemoteRepo = async (client) => {
   const answers = await askRepoDetails();

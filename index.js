@@ -12,7 +12,7 @@ const {
   createRemoteRepo,
   setupRepo,
   createGitIgnore
-} = require('./src/repo');
+} = require('./src/manageRepo');
 
 const directoryExists = path => fs.existsSync(path);
 
@@ -20,6 +20,7 @@ if (directoryExists('.git')) {
   console.log(chalk.red('Already a git repo'));
   process.exit();
 }
+
 const getGithubToken = async () => {
   let token = getStoredGithubToken();
 
@@ -46,21 +47,7 @@ const run = async () => {
 
     console.log(chalk.green('All done!'));
   } catch (err) {
-    if (err) {
-      switch (err.status) {
-        case 401:
-          console.log(
-          err);
-          break;
-        case 422:
-          console.log(
-            chalk.red('There is already a remote repository with the that name')
-          );
-          break;
-        default:
-          console.log(chalk.red(err));
-      }
-    }
+    console.log(err);
   }
 };
 

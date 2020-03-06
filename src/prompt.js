@@ -3,8 +3,8 @@ const path = require('path');
 
 const getCurrentDirectoryBase = () => path.basename(path.resolve(process.cwd()));
 
-const askGithubCredentials = () => {
-  const questions = [
+const askGithubCredentials = () => (
+  prompt([
     {
       name: 'username',
       type: 'input',
@@ -17,15 +17,14 @@ const askGithubCredentials = () => {
       message: 'Enter your password:',
       validate: (value) => value.length > 0 ? true : 'Enter your password:'
     }
-  ];
-  return prompt(questions);
-};
+  ])
+);
 
+const argv = require('minimist')(process.argv.slice(2));
 
-const askRepoDetails = () => {
-  const argv = require('minimist')(process.argv.slice(2));
+const askRepoDetails = () => (
 
-  const questions = [
+  prompt([
     {
       type: 'input',
       name: 'name',
@@ -47,22 +46,20 @@ const askRepoDetails = () => {
       choices: ['public', 'private'],
       default: 'public'
     }
-  ];
-  return prompt(questions);
-};
+ ])
+);
 
-const get2FaCode = () => {
-  return prompt({
+const get2FaCode = () => (
+  prompt({
     name: 'twoFaCode',
     type: 'input',
     message: 'Enter GitHub 2Fa passcode',
     validate: value => value.length > 0 ? true : 'Enter GitHub 2Fa passcode'
   })
+);
 
-}
-
-const askIgnoreFiles = filelist => {
-  const questions = [
+const askIgnoreFiles = filelist => (
+  prompt(
     {
       type: 'checkbox',
       name: 'ignore',
@@ -70,9 +67,8 @@ const askIgnoreFiles = filelist => {
       choices: filelist,
       default: ['node_modules']
     }
-  ];
-  return prompt(questions);
-};
+  )
+);
 
 module.exports = {
   askGithubCredentials,
