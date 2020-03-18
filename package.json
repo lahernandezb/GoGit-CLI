@@ -21,7 +21,7 @@
     "configstore": "^5.0.0",
     "figlet": "^1.2.4",
     "inquirer": "^7.0.4",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "ora": "^4.0.3",
     "ramda": "^0.27.0",
     "simple-git": "^1.131.0",
